@@ -19,7 +19,7 @@ def predict():
     body = request.form
     # get gender from body
     gender = 1 if body.get("gender") == 1 else 0
-    SeniorCitizen = int(body.get("SeniorCitizen"))
+    SeniorCitizen = 1 if body.get("SeniorCitizen") == 1 else 0
     Partner = 1 if body.get("Partner") == "1" else 0
     Dependents = 1 if body.get("Dependents") == "1" else 0
     tenure = int(body.get("tenure"))
