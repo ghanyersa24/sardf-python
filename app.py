@@ -1,12 +1,17 @@
 import numpy as np
 from flask import Flask, request, jsonify, render_template
+from flask_cors import CORS, cross_origin
 import pickle
 
 app = Flask(__name__)  # Initialize the flask App
 model = pickle.load(open('model.pkl', 'rb'))
 
 
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 @app.route('/predict', methods=['POST'])
+@cross_origin()
 def predict():
     '''
     For rendering results on HTML GUI
