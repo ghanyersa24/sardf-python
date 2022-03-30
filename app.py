@@ -35,15 +35,30 @@ def predict():
     PaperlessBilling = 1 if body.get("PaperlessBilling") == "1" else 0
     MonthlyCharges = int(body.get("MonthlyCharges"))
     TotalCharges = int(body.get("TotalCharges"))
-    InternetService_DSL = 1 if body.get("InternetService_DSL") == "1" else 0
-    InternetService_Fiber = 1 if body.get(
-        "InternetService_Fiber") == "1" else 0
-    InternetService_No = 1 if body.get("InternetService_No") == "1" else 0
-    PaymentMethod_Bank = 1 if body.get("PaymentMethod_Bank") == "1" else 0
-    PaymentMethod_Credit = 1 if body.get("PaymentMethod_Credit") == "1" else 0
-    PaymentMethod_Electronic = 1 if body.get(
-        "PaymentMethod_Electronic") == "1" else 0
-    PaymentMethod_Mailed = 1 if body.get("PaymentMethod_Mailed") == "1" else 0
+    InternetService_DSL = 0
+    InternetService_Fiber = 0
+    InternetService_No = 0
+    service = body.get("service")
+    if(service == "dsl"):
+        InternetService_DSL = 1
+    elif(service == "fiber"):
+        InternetService_Fiber = 1
+    elif(service == "no"):
+        InternetService_No = 1
+
+    PaymentMethod_Bank = 0
+    PaymentMethod_Credit = 0
+    PaymentMethod_Electronic = 0
+    PaymentMethod_Mailed = 0
+    payment = body.get("payment")
+    if(payment == "bank"):
+        PaymentMethod_Bank = 1
+    elif(payment == "credit"):
+        PaymentMethod_Credit = 1
+    elif(payment == "electronic"):
+        PaymentMethod_Electronic = 1
+    elif(payment == "mailed"):
+        PaymentMethod_Mailed = 1
 
     values = [
         gender, SeniorCitizen, Partner, Dependents,
