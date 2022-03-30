@@ -10,6 +10,7 @@ model = pickle.load(open('model.pkl', 'rb'))
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+
 @app.route('/predict', methods=['POST'])
 @cross_origin()
 def predict():
@@ -61,9 +62,11 @@ def predict():
         output = 'Not Churn'
     else:
         output = 'Churn'
-    return jsonify({
+    response = jsonify({
         'prediction': int(prediction),
         'message': "Customer will be "+output})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 if __name__ == "__main__":
