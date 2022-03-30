@@ -7,11 +7,12 @@ app = Flask(__name__)  # Initialize the flask App
 model = pickle.load(open('model.pkl', 'rb'))
 
 
-CORS(app, support_credentials=True)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 @app.route('/predict', methods=['POST'])
-@cross_origin(supports_credentials=True)
+@cross_origin()
 def predict():
     '''
     For rendering results on HTML GUI
